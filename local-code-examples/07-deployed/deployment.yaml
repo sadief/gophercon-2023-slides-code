@@ -15,5 +15,5 @@ spec:
     spec:
       containers:
       - name: coffee-shop
-        image: coffee-shop
+        image: sadesf/killercodagoroutinetest:coffee-shop
         imagePullPolicy: Always
