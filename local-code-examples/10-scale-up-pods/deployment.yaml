@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coffee-shop
+spec:
+  selector:
+    matchLabels:
+      run: coffee-shop
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: coffee-shop
+    spec:
+      containers:
+      - name: coffee-shop
+        image: coffee-shop
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: coffee-shop
+  labels:
+    run: coffee-shop
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: coffee-shop
+  type: NodePort
+  sessionAffinity: None
